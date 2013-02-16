@@ -18,6 +18,7 @@ import java.util.zip.ZipFile;
  * https://gist.github.com/dgageot/4957186
  */
 class PhantomJsDownloader {
+
     private final boolean isWindows;
     private final boolean isMac;
 
@@ -50,8 +51,7 @@ class PhantomJsDownloader {
 
     private void extractExe(String url, File phantomInstallDir, File phantomJsExe) {
         if (phantomJsExe.exists()) {
-            //return;
-            phantomJsExe.delete();
+            return;
         }
 
         File targetZip = new File(phantomInstallDir, "phantomjs.zip");
@@ -75,8 +75,7 @@ class PhantomJsDownloader {
 
     private void downloadZip(String url, File targetZip) {
         if (targetZip.exists()) {
-            //return;
-            targetZip.delete();
+            return;
         }
 
         System.out.println("Downloading phantomjs from " + url + "...");
