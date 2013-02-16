@@ -27,6 +27,11 @@ class PhantomJsDownloader {
     }
 
     public File downloadAndExtract() {
+        String phantomjsPath = System.getProperty("phantomjs.path");
+        if (phantomjsPath != null) {
+            return new File(phantomjsPath);
+        }
+
         File installDir = new File(new File(System.getProperty("user.home")), ".phantomjstest");
 
         String url;

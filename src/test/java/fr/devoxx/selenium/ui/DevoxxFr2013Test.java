@@ -1,5 +1,6 @@
-package fr.devoxx.selenium;
+package fr.devoxx.selenium.ui;
 
+import fr.devoxx.selenium.PhantomJsTest;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
