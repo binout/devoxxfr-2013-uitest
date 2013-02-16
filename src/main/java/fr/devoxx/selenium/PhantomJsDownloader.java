@@ -29,6 +29,7 @@ class PhantomJsDownloader {
     public File downloadAndExtract() {
         String phantomjsPath = System.getProperty("phantomjs.path");
         if (phantomjsPath != null) {
+            System.out.println("Using already installed phantomjs : " + phantomjsPath);
             return new File(phantomjsPath);
         }
 
