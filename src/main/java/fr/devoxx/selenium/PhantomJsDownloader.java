@@ -5,11 +5,9 @@ import com.google.common.io.Files;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.OutputSupplier;
 import com.google.common.io.Resources;
+import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URI;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
@@ -62,8 +60,10 @@ class PhantomJsDownloader {
         try {
             if (isWindows) {
                 unzip(targetZip, phantomInstallDir);
-            } else {
+            } else if (isMac) {
                 new ProcessBuilder().command("/usr/bin/unzip", "-qo", "phantomjs.zip").directory(phantomInstallDir).start().waitFor();
+            } else {
+                new ProcessBuilder().command("/usr/bin/tar", "-xjvf", "phantomjs.zip").directory(phantomInstallDir).start().waitFor();
             }
         } catch (Exception e) {
             throw new IllegalStateException("Unable to unzip phantomjs from " + targetZip.getAbsolutePath());
@@ -116,5 +116,6 @@ class PhantomJsDownloader {
             zipFile.close();
         }
     }
+
 }
 
