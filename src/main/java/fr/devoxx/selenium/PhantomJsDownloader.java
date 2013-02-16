@@ -50,19 +50,22 @@ class PhantomJsDownloader {
 
     private void extractExe(String url, File phantomInstallDir, File phantomJsExe) {
         if (phantomJsExe.exists()) {
-            return;
+            //return;
+            phantomJsExe.delete();
         }
 
         File targetZip = new File(phantomInstallDir, "phantomjs.zip");
         downloadZip(url, targetZip);
 
-        System.out.println("Extracting phantomjs");
+        System.out.println("Extracting phantomjs...");
         try {
             if (isWindows) {
                 unzip(targetZip, phantomInstallDir);
             } else if (isMac) {
+                System.out.println("Using unzip -qo ...");
                 new ProcessBuilder().command("/usr/bin/unzip", "-qo", "phantomjs.zip").directory(phantomInstallDir).start().waitFor();
             } else {
+                System.out.println("Using tar -xjvf ...");
                 new ProcessBuilder().command("/usr/bin/tar", "-xjvf", "phantomjs.zip").directory(phantomInstallDir).start().waitFor();
             }
         } catch (Exception e) {
@@ -72,7 +75,8 @@ class PhantomJsDownloader {
 
     private void downloadZip(String url, File targetZip) {
         if (targetZip.exists()) {
-            return;
+            //return;
+            targetZip.delete();
         }
 
         System.out.println("Downloading phantomjs from " + url + "...");
