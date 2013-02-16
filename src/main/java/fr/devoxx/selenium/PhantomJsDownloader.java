@@ -21,18 +21,15 @@ import java.util.zip.ZipFile;
  */
 class PhantomJsDownloader {
     private final boolean isWindows;
+    private final boolean isMac;
+
 
     PhantomJsDownloader() {
-        isWindows = !System.getProperty("os.name").startsWith("Mac OS X");
+        isMac = System.getProperty("os.name").startsWith("Mac OS X");
+        isWindows = System.getProperty("os.name").startsWith("Windows");
     }
 
     public File downloadAndExtract() {
-        String phantomjsPath = System.getProperty("phantomjs.path");
-        if (phantomjsPath != null) {
-            System.out.println("Using already installed phantomjs : " + phantomjsPath);
-            return new File(phantomjsPath);
-        }
-
         File installDir = new File(new File(System.getProperty("user.home")), ".phantomjstest");
 
         String url;
@@ -40,9 +37,12 @@ class PhantomJsDownloader {
         if (isWindows) {
             url = "http://phantomjs.googlecode.com/files/phantomjs-1.8.1-windows.zip";
             phantomJsExe = new File(installDir, "phantomjs-1.8.1-windows/phantomjs.exe");
-        } else {
+        } else if (isMac) {
             url = "http://phantomjs.googlecode.com/files/phantomjs-1.8.1-macosx.zip";
             phantomJsExe = new File(installDir, "phantomjs-1.8.1-macosx/bin/phantomjs");
+        }  else {
+            url = "http://phantomjs.googlecode.com/files/phantomjs-1.8.1-linux-x86_64.tar.bz2";
+            phantomJsExe = new File(installDir, "phantomjs-1.8.1-linux-x86_64/bin/phantomjs");
         }
 
         extractExe(url, installDir, phantomJsExe);
