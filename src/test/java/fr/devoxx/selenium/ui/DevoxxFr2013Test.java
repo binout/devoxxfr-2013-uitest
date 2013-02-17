@@ -34,10 +34,27 @@ public class DevoxxFr2013Test extends PhantomJsTest {
     }
 
     @Test
+    public void planning_page_should_search_xavier_hanin() {
+        goTo("/");
+
+        find("#inputQuery").text("xavier hanin");
+        assertThat(find("table tr", 1).getText()).contains("Conference DÃ©veloppeur au quotidien IDE Java : astuces de productivitÃ© pour le quotidien Xavier Hanin NOVICE");
+    }
+
+
+    @Test
     public void speakers_page_should_display_table() {
         goTo("/speakers.html");
 
         assertThat(find("table tr", 0).getText()).contains("Name Company Twitter");
+    }
+
+    @Test
+    public void speakers_page_should_search_xavier_hanin() {
+        goTo("/speakers.html");
+
+        find("#inputQuery").text("hanin");
+        assertThat(find("table tr", 1).getText()).contains("Xavier Hanin 4SH FRANCE @xavierhanin");
     }
 
     @Test
