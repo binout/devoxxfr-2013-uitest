@@ -39,4 +39,18 @@ public class DevoxxFr2013Test extends PhantomJsTest {
 
         assertThat(find("table tr", 0).getText()).contains("Name Company Twitter");
     }
+
+    @Test
+    public void talk_page_should_display_xhanin_talk() {
+        goTo("/talk.html#?talkId=2740");
+
+        assertThat(find("h1").getText()).contains("IDE Java : astuces de productivité pour le quotidien");
+    }
+
+    @Test
+    public void speaker_page_should_display_xhanin_bio() {
+        goTo("/speaker.html#?id=924");
+
+        assertThat(find("h1").getText()).contains("Xavier Hanin");
+    }
 }
