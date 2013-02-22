@@ -59,7 +59,7 @@ public class DevoxxFr2013Test extends PhantomJsTest {
 
     @Test
     public void talk_page_should_display_xhanin_talk() {
-        goTo("/talk.html#?talkId=2740");
+        goTo("/talk.html#?id=2740");
 
         assertThat(find("h1").getText()).contains("IDE Java");
     }
