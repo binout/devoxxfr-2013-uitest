@@ -38,7 +38,7 @@ public class DevoxxFr2013Test extends PhantomJsTest {
         goTo("/");
 
         find("#inputQuery").text("xavier hanin");
-        assertThat(find("table tr", 1).getText()).contains("Conference DÃ©veloppeur au quotidien IDE Java : astuces de productivitÃ© pour le quotidien Xavier Hanin NOVICE");
+        assertThat(find("table tr", 1).getText()).contains("Xavier Hanin");
     }
 
 
@@ -61,7 +61,7 @@ public class DevoxxFr2013Test extends PhantomJsTest {
     public void talk_page_should_display_xhanin_talk() {
         goTo("/talk.html#?talkId=2740");
 
-        assertThat(find("h1").getText()).contains("IDE Java : astuces de productivité pour le quotidien");
+        assertThat(find("h1").getText()).contains("IDE Java");
     }
 
     @Test
