@@ -13,29 +13,29 @@ public class DevoxxFr2013Test extends PhantomJsTest {
     }
 
     @Test
-    public void planning_page_should_display_navbar() {
-        goTo("/");
+    public void talks_page_should_display_navbar() {
+        goTo("/talks.html");
 
         assertThat(find(".brand").getText()).contains("Devoxxfr 2013");
     }
 
     @Test
-    public void planning_page_should_display_search() {
-        goTo("/");
+    public void talks_page_should_display_search() {
+        goTo("/talks.html");
 
-        assertThat(find(".control-label").getText()).contains("Recherche");
+        assertThat(find(".control-label").getText()).contains("Search");
     }
 
     @Test
-    public void planning_page_should_display_table() {
-        goTo("/");
+    public void talks_page_should_display_table() {
+        goTo("/talks.html");
 
         assertThat(find("table tr", 0).getText()).contains("Type Track Title Speaker Experience Language");
     }
 
     @Test
-    public void planning_page_should_search_xavier_hanin() {
-        goTo("/");
+    public void talks_page_should_search_xavier_hanin() {
+        goTo("/talks.html");
 
         find("#inputQuery").text("xavier hanin");
         assertThat(find("table tr", 1).getText()).contains("Xavier Hanin");
