@@ -2,7 +2,7 @@ package fr.devoxx.selenium.ui;
 
 import fr.devoxx.selenium.PhantomJsTest;
 
-public class DevoxxFr2013Test extends PhantomJsTest {
+public abstract class DevoxxFr2013Test extends PhantomJsTest {
 
     @Override
     public String defaultUrl() {
