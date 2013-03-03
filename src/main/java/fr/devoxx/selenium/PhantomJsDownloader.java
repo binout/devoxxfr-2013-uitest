@@ -50,7 +50,8 @@ class PhantomJsDownloader {
 
     private void extractExe(String url, File phantomInstallDir, File phantomJsExe) {
         if (phantomJsExe.exists()) {
-            return;
+            //return;
+            phantomJsExe.delete();
         }
 
         File targetZip = new File(phantomInstallDir, "phantomjs.zip");
@@ -74,7 +75,8 @@ class PhantomJsDownloader {
 
     private void downloadZip(String url, File targetZip) {
         if (targetZip.exists()) {
-            return;
+            //return;
+            targetZip.delete();
         }
 
         System.out.println("Downloading phantomjs from " + url + "...");
